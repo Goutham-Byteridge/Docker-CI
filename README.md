@@ -1,4 +1,4 @@
-# Continuous deployment to amazon ecs with bitbucket pipeline
+# Continuous deployment to amazon ecs with bitbucket pipelines
 
 First you have to create a user in AWS IAM. For this user you can create the access key and the secret key.
 
