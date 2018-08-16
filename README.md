@@ -1,6 +1,6 @@
 # Continuous deployment to amazon ecs with bitbucket pipelines
 
-First you have to create a user in AWS IAM. For this user you can create the access key and the secret key.
+Before getting started you have to create a user in AWS IAM. For this user you can create the access key and the secret key.
 
 Next you have to define following environment variables in the Bitbucket Pipeline settings:
 
@@ -19,7 +19,7 @@ Once your commit has been made on the master branch, bitbucket pipelines gets tr
 
 ## Test &amp; Build
 
-Run your test cases to make sure that the code is working before it is being deployed. For this i&#39;ve created a file named &quot;Dockerfile&quot; and included some sample commands for testing and building NodeJS application. You can update the commands accordingly w.r.t the technology that you&#39;re using.
+Run your test cases to make sure that the code is working as expected before it is being deployed. For this i&#39;ve created a file named &quot;Dockerfile&quot; and included some sample commands for testing and building NodeJS application. You can update the commands accordingly w.r.t the technology that you&#39;re using.
 
 The following command mentioned in bitbucket-pipelines.yml will execute the instructions in the Dockerfile and create a docker image
 
