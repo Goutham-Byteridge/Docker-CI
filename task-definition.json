@@ -1,0 +1,32 @@
+[
+  {
+    "name": "banterx",
+    "image": "<REPOSITORY_URI>:<IMAGE_VERSION>",
+    "cpu": 0,
+    "memory": 500,
+    "memoryReservation": 75,
+    "portMappings": [
+      {
+        "hostPort": 1337,
+        "protocol": "tcp",
+        "containerPort": 1337
+      }
+    ],
+    "essential": true,
+    "entryPoint": [],
+    "command": [],
+    "environment": [],
+    "mountPoints": [],
+    "volumesFrom": [],
+    "workingDirectory": "/app",
+    "disableNetworking": false,
+    "privileged": true,
+    "readonlyRootFilesystem": false,
+    "dnsServers": [],
+    "dnsSearchDomains": [],
+    "dockerSecurityOptions": [],
+    "logConfiguration": {
+      "logDriver": "json-file"
+    }
+  }
+]

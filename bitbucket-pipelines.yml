@@ -1,0 +1,26 @@
+# This is a sample build configuration for JavaScript.
+# You can specify a custom docker image from Docker Hub as your build environment.
+pipelines:
+  branches:
+    master:
+    - step:
+        services:
+          - docker
+        image: tstrohmeier/awscli:3.6.4  
+        script: # Modify the commands below to build your repository.
+            # Install jq which is a json processor used for parsing task-definition file
+            - apt-get update && apt-get install jq -y
+            - curl -L -o ~/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5rc1/jq-linux-x86_64-static && chmod +x ~/bin/jq
+            # aws login
+            - eval $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
+            # set build id and deployment environment to uniquely identify your build
+            - export DEPLOYMENT_ENV=staging
+            - export BUILD_ID=$BITBUCKET_BRANCH_$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER
+            # build docker images
+            - docker build -t ${AWS_REGISTRY_URL}:$BUILD_ID .
+            # push docker image to AWS 
+            - docker push ${AWS_REGISTRY_URL}:$BUILD_ID
+            # Deploy the docker image on AWS cluster
+            # Update CLUSTER_NAME & SERVICE_NAME with your custom names
+            - bash ./deploy.sh -b CLUSTER_NAME -s SERVICE_NAME -e ${DEPLOYMENT_ENV} -i $BUILD_ID
+            
