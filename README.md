@@ -13,25 +13,25 @@ Here is how the general deployment workflow looks like
 
 ![workflow](/workflow.png?raw=true "")
 
-**1) Commit code to bitbucket**
+## Commit code to bitbucket
 
 Once your commit has been made on the master branch, bitbucket pipelines gets triggered automatically and all the steps illustrated under master branch in the bitbucket-pipelines.yml will get executed. In our case we are using master branch for deployment but it is customizable. The environment variables which we have defined earlier in the bitbucket pipeline settings will be used in this bitbucket-pipelines.yml file.
 
-**2) Test &amp; Build**
+## Test &amp; Build
 
 Run your test cases to make sure that the code is working before it is being deployed. For this i&#39;ve created a file named &quot;Dockerfile&quot; and included some sample commands for testing and building NodeJS application. You can update the commands accordingly w.r.t the technology that you&#39;re using.
 
 The following command mentioned in bitbucket-pipelines.yml will execute the instructions in the Dockerfile and create a docker image
 
-- docker build -t ${AWS\_REGISTRY\_URL}:$BUILD\_ID .
+    docker build -t ${AWS\_REGISTRY\_URL}:$BUILD\_ID .
 
-**3) Push your code to Amazon ECR**
+## Push your code to Amazon ECR
 
 The following command mentioned in bitbucket-pipelines.yml will push the docker image to Amazon ECR
 
-- docker push ${AWS\_REGISTRY\_URL}:$BUILD\_ID
+    docker push ${AWS\_REGISTRY\_URL}:$BUILD\_ID
 
-**4) Deploy**
+## Deploy
 
 For deployment I wrote the &quot;deploy.sh&quot; script and task-definition.json.
 
@@ -49,7 +49,7 @@ A task definition is required to run Docker containers in Amazon ECS. In task de
 -    the deployment environment (&quot;staging&quot; in our case) [-e]
 -    the image name [-i]
 
-   bash ./deploy.sh -b CLUSTER\_NAME -s SERVICE\_NAME -e ${DEPLOYMENT\_ENV} -i $BUILD\_ID
+    bash ./deploy.sh -b CLUSTER\_NAME -s SERVICE\_NAME -e ${DEPLOYMENT\_ENV} -i $BUILD\_ID
 
 
 
