@@ -23,13 +23,13 @@ Run your test cases to make sure that the code is working as expected before it 
 
 The following command mentioned in bitbucket-pipelines.yml will execute the instructions in the Dockerfile and create a docker image
 
-    docker build -t ${AWS\_REGISTRY\_URL}:$BUILD\_ID .
+    docker build -t ${AWS_REGISTRY_URL}:$BUILD_ID .
 
 ## Push your code to Amazon ECR
 
 The following command mentioned in bitbucket-pipelines.yml will push the docker image to Amazon ECR
 
-    docker push ${AWS\_REGISTRY\_URL}:$BUILD\_ID
+    docker push ${AWS_REGISTRY_URL}:$BUILD_ID
 
 ## Deploy
 
@@ -49,7 +49,7 @@ A task definition is required to run Docker containers in Amazon ECS. In task de
 -    the deployment environment (&quot;staging&quot; in our case) [-e]
 -    the image name [-i]
 
-    bash ./deploy.sh -b CLUSTER\_NAME -s SERVICE\_NAME -e ${DEPLOYMENT\_ENV} -i $BUILD\_ID
+    bash ./deploy.sh -b CLUSTER_NAME -s SERVICE_NAME -e ${DEPLOYMENT_ENV} -i $BUILD_ID
 
 
 
