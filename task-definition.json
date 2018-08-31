@@ -1,6 +1,6 @@
 [
   {
-    "name": "banterx",
+    "name": "Byteridge",
     "image": "<REPOSITORY_URI>:<IMAGE_VERSION>",
     "cpu": 0,
     "memory": 500,
